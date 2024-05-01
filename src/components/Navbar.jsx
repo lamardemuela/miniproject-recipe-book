@@ -7,7 +7,6 @@ export default function Navbar() {
         alignItems: "center",
         backgroundColor: "#04273D",
         margin: "0px",
-
         padding: "0 64px 0 64px"
     }
   return (

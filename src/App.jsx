@@ -1,18 +1,22 @@
-import './App.css'
-import Footter from './components/Footter'
-import Home from './components/Home'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
+import "./App.css";
+import Footter from "./components/Footter";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import Recipes from "./components/Recipes";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
     <>
-     <Navbar />
-     <Sidebar />
-     <Home />
-     <Footter />
+      <Navbar />
+      <div id="main-container">
+        <Sidebar />
+        <Home />
+      </div>
+
+      <Footter />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
