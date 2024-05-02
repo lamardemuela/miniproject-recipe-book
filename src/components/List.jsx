@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import allRecipesArr from "../data/recipes.json";
-import ListItem from './ListItem';
+import ListItem from "./ListItem";
 
 function List() {
-    // estilos
+  // estilos
   const recipeDivStyles = {
     width: "84vw",
   };
@@ -36,13 +36,13 @@ function List() {
     <div style={recipeDivStyles}>
       {recipesToShow.map((eachRecipe, index) => {
         return (
-            <div key={index} style={recipeCardStyles}>
-                <ListItem id= {eachRecipe.id} image = {eachRecipe.image} name = {eachRecipe.name} calories = {eachRecipe.calories} servings = {eachRecipe.servings}/>
-            </div>
+          <div key={index} style={recipeCardStyles}>
+            <ListItem eachRecipe={eachRecipe} handleDelete= {handleDelete} index={index}/>
+          </div>
         );
       })}
     </div>
-  )
+  );
 }
 
-export default List
+export default List;

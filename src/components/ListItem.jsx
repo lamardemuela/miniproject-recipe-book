@@ -1,17 +1,25 @@
 import React from "react";
 
 function ListItem(props) {
+  // destructuring
+  const {calories, id, name, servings, image} = props.eachRecipe
+  console.log(props)
   // estilos
   const pigStyles = {
-    fontSize: props.calories <= 300 ? "16px" : "32px",
+    fontSize: calories <= 300 ? "16px" : "32px",
   };
+
+  
+
+  
+
   return (
     <>
-      <img src={props.image} alt={props.name} height="32px" />
-      <h4>{props.name}</h4>
-      <p> 👤 {props.servings}</p>
-      <p style={pigStyles}> 🐷 {props.calories} </p>
-      <button onClick={() => handleDelete(index)}> Delete </button>
+      <img src={image} alt={name} height="32px" />
+      <h4>{name}</h4>
+      <p> 👤 {servings}</p>
+      <p style={pigStyles}> 🐷 {calories} </p>
+      <button onClick={() => props.handleDelete(props.index)}> Delete </button>
     </>
   );
 }
