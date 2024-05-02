@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom'
+
 export default function Sidebar() {
+  
 const sideBarStyles = {
     backgroundColor: "#fff",
     color: "#04283d",
@@ -18,8 +21,8 @@ const aStyles = {
 }
   return (
     <nav style={sideBarStyles}>
-        <a href="" style={aStyles}>Home</a>
-        <a href="" style={aStyles}>About</a>
+        <Link to="/" style={aStyles}>Home</Link>
+        <Link to ="/about" style={aStyles}>About</Link>
     </nav>
   )
 }

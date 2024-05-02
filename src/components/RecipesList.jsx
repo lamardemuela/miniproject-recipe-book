@@ -2,12 +2,11 @@ import React from "react";
 import { useState } from "react";
 import allRecipesArr from "../data/recipes.json";
 import ListItem from "./ListItem";
+import { Link } from 'react-router-dom'
 
 function List() {
   // estilos
-  const recipeDivStyles = {
-    width: "84vw",
-  };
+  
 
   const recipeCardStyles = {
     backgroundColor: "#fff",
@@ -18,6 +17,7 @@ function List() {
     margin: "8px",
     borderRadius: "8px",
     height: "80px",
+    
   };
 
   // States
@@ -33,15 +33,19 @@ function List() {
   };
 
   return (
-    <div style={recipeDivStyles}>
+    <>
       {recipesToShow.map((eachRecipe, index) => {
         return (
-          <div key={index} style={recipeCardStyles}>
+          <Link style={{textDecoration: "none"}}key={index} to={`/item-details/${eachRecipe.id}`}>
+          <div style={recipeCardStyles}>
+            
             <ListItem eachRecipe={eachRecipe} handleDelete= {handleDelete} index={index}/>
+            
           </div>
+          </Link>
         );
       })}
-    </div>
+    </>
   );
 }
 
