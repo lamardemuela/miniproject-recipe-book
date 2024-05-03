@@ -1,18 +1,26 @@
-import React from "react";
-import ItemsJSON from "../data/recipes.json";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import AddRecipe from "../components/AddRecipe";
+import EditRecipe from "../components/EditRecipe";
 
-function ItemDetails() {
+function ItemDetails(props) {
+  // params
   const paramsDinamicos = useParams();
-
-  const foundItemList = ItemsJSON.find((eachItem) => {
-    console.log(eachItem);
+  const foundItem = props.recipesToShow.find((eachItem) => {
     return eachItem.id === paramsDinamicos.itemId;
   });
+  console.log(foundItem.name)
+  // state
+  const [isFormShowing, setIsFormShowing]= useState(false)
+  // events
+  const handleEdit = () => {
+    console.log("editando")
+    setIsFormShowing(true)
+  }
 
-  console.log(foundItemList);
+  // estilos
   const pigStyles = {
-    fontSize: foundItemList.calories <= 300 ? "16px" : "32px",
+    fontSize: props.recipesToShow.calories <= 300 ? "16px" : "32px",
   };
 
   const recipeItemStyles = {
@@ -32,18 +40,28 @@ function ItemDetails() {
   return (
     <div>
       <h3>🐽Información de la receta🐽</h3>
-      {foundItemList === undefined ? (
+      {foundItem === undefined ? (
         <p>No hay recetas con esa información</p>
       ) : (
         <div style={recipeItemStyles}>
           <img
-            src={foundItemList.image}
-            alt={foundItemList.name}
+            src={foundItem.image}
+            alt={foundItem.name}
             height="100px"
           />
-          <h4>{foundItemList.name}</h4>
-          <p> 👤 {foundItemList.servings}</p>
-          <p style={pigStyles}> 🐷 {foundItemList.calories} </p>
+          <h4>{foundItem.name}</h4>
+          <p> 👤 {foundItem.servings}</p>
+          <p style={pigStyles}> 🐷 {foundItem.calories} </p>
+          <button onClick={handleEdit}> Editar </button>
+          {isFormShowing === true && 
+          <EditRecipe
+          nameValue = {foundItem.name}
+          imgValue = {foundItem.image}
+          caloriesValue = {foundItem.calories}
+          servingsValue = {foundItem.servings}
+          recipesToShow = {props.recipesToShow}
+          />}
+          
         </div>
       )}
     </div>

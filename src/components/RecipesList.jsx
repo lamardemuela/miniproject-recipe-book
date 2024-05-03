@@ -1,48 +1,57 @@
 import React from "react";
 import { useState } from "react";
-import allRecipesArr from "../data/recipes.json";
 import ListItem from "./ListItem";
-import { Link } from 'react-router-dom'
+import AddRecipe from "./AddRecipe";
 
-function List() {
-  // estilos
-  
-
-  const recipeCardStyles = {
-    backgroundColor: "#fff",
-    color: "#04283d",
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
-    margin: "8px",
-    borderRadius: "8px",
-    height: "80px",
-    
-  };
-
+function List(props) {
   // States
-  const [recipesToShow, setRecipesToShow] = useState(allRecipesArr);
+  const [isFormShowing, setIsFormShowing] = useState(false);
 
   // Events
   const handleDelete = (indexToDelete) => {
-    console.log("clickando")
-    const clone = JSON.parse(JSON.stringify(recipesToShow));
+    const clone = JSON.parse(JSON.stringify(props.recipesToShow));
     clone.splice(indexToDelete, 1);
-    console.log(clone)
-    setRecipesToShow(clone);
+    props.setRecipesToShow(clone);
+  };
+
+  const handleShowForm = () => {
+    setIsFormShowing(!isFormShowing);
   };
 
   return (
     <>
-      {recipesToShow.map((eachRecipe, index) => {
+      {isFormShowing === true && (
+        <button
+          id="primary-btn"
+          onClick={handleShowForm}
+          style={{ backgroundColor: "#fff" }}
+        >
+          {" "}
+          ❌ Cerrar Cerdirreceta{" "}
+        </button>
+      )}
+      {isFormShowing === false && (
+        <button id="primary-btn" onClick={handleShowForm}>
+          {" "}
+          🐷+ Añadir Cerdirreceta{" "}
+        </button>
+      )}
+
+      {isFormShowing === true && (
+        <AddRecipe
+          recipesToShow={props.recipesToShow}
+          setRecipesToShow={props.setRecipesToShow}
+        />
+      )}
+
+      {props.recipesToShow.map((eachRecipe, index) => {
         return (
-          <Link style={{textDecoration: "none"}}key={index} to={`/item-details/${eachRecipe.id}`}>
-          <div style={recipeCardStyles}>
-            
-            <ListItem eachRecipe={eachRecipe} handleDelete= {handleDelete} index={index}/>
-            
-          </div>
-          </Link>
+          <ListItem
+            key={index}
+            eachRecipe={eachRecipe}
+            handleDelete={handleDelete}
+            index={index}
+          />
         );
       })}
     </>
