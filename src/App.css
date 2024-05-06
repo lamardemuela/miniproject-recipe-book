@@ -17,7 +17,7 @@ form {
   margin: 16px;
 }
 
-#primary-btn, form button {
+.primary-btn, form button {
   background-color: #fcb6c6;
   color: #04283d;
   font-weight: bold;
@@ -25,4 +25,16 @@ form {
   padding: 8px 12px 8px 12px;
   border-radius: 8px;
   margin-top: 8px;
+}
+
+.delete{
+  background-color:#04283d ;
+  color: #fcb6c6;
+  font-weight: bold;
+  border-style: none;
+  padding: 8px 12px 8px 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+
+  
 }

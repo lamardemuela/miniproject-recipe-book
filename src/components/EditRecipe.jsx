@@ -4,7 +4,7 @@ import ItemDetails from "../pages/ItemDetails";
 function EditRecipe(props) {
   // States
   const [nameValue, setNameValue] = useState(props.nameValue);
-  
+
   const [imgValue, setImgValue] = useState(props.imgValue);
   const [caloriesValue, setCaloriesValue] = useState(props.caloriesValue);
   const [servingsValue, setServingValue] = useState(props.servingsValue);
@@ -27,17 +27,26 @@ function EditRecipe(props) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     // actualizamos el componente
-    const updatedRecipe = {
-        name: nameValue,
-        calories: caloriesValue,
-        image: imgValue,
-        servings: servingsValue,
-      };
-      
-      console.log(props.foundItem)
-  }
+    event.preventDefault();
+
+    props.setRecipesToShow((currentState) => {
+      const clone = JSON.parse(JSON.stringify(currentState));
+
+      clone.forEach((eachRecipe) => {
+        if (eachRecipe.id === props.foundItem.id){
+          eachRecipe.name = nameValue
+          eachRecipe.calories = caloriesValue
+          eachRecipe.image =imgValue
+          eachRecipe.servings= servingsValue
+
+        }
+      });
+
+      return clone;
+    });
+
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -78,7 +87,7 @@ function EditRecipe(props) {
           />
         </label>
 
-        <button type="submit"> ✏️  Guardar Cerdicambios </button>
+        <button type="submit"> ✏️ Guardar Cerdicambios </button>
       </form>
     </div>
   );

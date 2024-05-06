@@ -15,7 +15,7 @@ function ItemDetails(props) {
   // events
   const handleEdit = () => {
     console.log("editando")
-    setIsFormShowing(true)
+    setIsFormShowing(!isFormShowing)
   }
 
   // estilos
@@ -52,7 +52,23 @@ function ItemDetails(props) {
           <h4>{foundItem.name}</h4>
           <p> 👤 {foundItem.servings}</p>
           <p style={pigStyles}> 🐷 {foundItem.calories} </p>
-          <button onClick={handleEdit}> Editar </button>
+          
+          {isFormShowing === true && (
+        <button
+          className="primary-btn"
+          onClick={handleEdit}
+          style={{ backgroundColor: "#fff" }}
+        >
+          
+          ❌ Cerrar Edición
+        </button>
+      )}
+      {isFormShowing === false && (
+        <button className="primary-btn" onClick={handleEdit}>
+          
+          🐷 Editar
+        </button>
+      )}
           {isFormShowing === true && 
           <EditRecipe
           nameValue = {foundItem.name}
@@ -60,6 +76,8 @@ function ItemDetails(props) {
           caloriesValue = {foundItem.calories}
           servingsValue = {foundItem.servings}
           recipesToShow = {props.recipesToShow}
+          setRecipesToShow = {props.setRecipesToShow}
+          foundItem = {foundItem}
           />}
           
         </div>

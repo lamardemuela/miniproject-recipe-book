@@ -22,7 +22,7 @@ function List(props) {
     <>
       {isFormShowing === true && (
         <button
-          id="primary-btn"
+          className="primary-btn"
           onClick={handleShowForm}
           style={{ backgroundColor: "#fff" }}
         >
@@ -31,7 +31,7 @@ function List(props) {
         </button>
       )}
       {isFormShowing === false && (
-        <button id="primary-btn" onClick={handleShowForm}>
+        <button className="primary-btn" onClick={handleShowForm}>
           {" "}
           🐷+ Añadir Cerdirreceta{" "}
         </button>

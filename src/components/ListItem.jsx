@@ -30,7 +30,7 @@ function ListItem(props) {
           <p style={pigStyles}> 🐷 {calories} </p>
         </div>
       </Link>
-      <button onClick={() => props.handleDelete(props.index)}> Delete </button>
+      <button className="delete" onClick={() => props.handleDelete(props.index)}> Delete </button>
     </div>
   );
 }
