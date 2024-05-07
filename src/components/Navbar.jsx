@@ -1,6 +1,9 @@
-import imgLogo from "../assets/images/cerdo.png"
 
-export default function Navbar() {
+import imgLogo from "../assets/images/cerdo.png"
+import Searchbar from "./Searchbar"
+
+export default function Navbar(props) {
+  
     const navbarStyles = {
         display: "flex",
         justifyContent: "space-between",
@@ -11,8 +14,10 @@ export default function Navbar() {
     }
   return (
     <div style={navbarStyles}>
+        
         <img src={imgLogo} alt="logo cerdo" height="40px"/>
         <p>Cerdirrecetas</p>
+        <Searchbar recipesToShow ={props.recipesToShow} />
     </div>
   )
 }

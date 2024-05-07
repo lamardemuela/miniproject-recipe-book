@@ -24,7 +24,7 @@ function App() {
 
     <>
     
-      <Navbar />
+      <Navbar recipesToShow = {recipesToShow}/>
       <div id="main-container">
         <Sidebar />
         <div style={pageStyle}>
